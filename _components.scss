@@ -1,149 +1,187 @@
 // composition
 .composition {
-    position: relative;
+  position: relative;
 
-    &__photo {
-        width: 55%;
-        box-shadow: 0 1.5rem 4rem rgba(#000, .4);
-        border-radius: 2px;
-        position: absolute;
-        z-index: 10;
-        transition: all .2s;
-        outline-offset: 2rem;
+  &__photo {
+    width: 55%;
+    box-shadow: 0 1.5rem 4rem rgba(#000, 0.4);
+    border-radius: 2px;
+    position: absolute;
+    z-index: 10;
+    transition: all 0.2s;
+    outline-offset: 2rem;
 
-
-        &--p1 {
-            left: 0;
-            top: -2rem;
-        }
-
-        &--p2 {
-            right: 0;
-            top: 2rem;
-        }
-
-        &--p3 {
-            left: 20%;
-            top: 10rem;
-        }
-
-        &:hover {
-            outline: 1.5rem solid $color-primary;
-            transform: scale(1.05) translateY(-.5rem);
-            box-shadow: 0 2.5rem 4rem rgba(#000, .5);
-            z-index: 20;
-        }
-
+    @include respond(tab-port) {
+      float: left;
+      position: relative;
+      width: 33.33333333%;
+      box-shadow: 0 1.5rem 3rem rgba($color-black, 0.2);
     }
 
-    &:hover &__photo:not(:hover) {
-        transform: scale(.95);
+    @include respond(phone) {
+      width: 80%;
+      float: none;
     }
-    //composition:hover composition__photo:not(:hover) {
+
+    &--p1 {
+      left: 0;
+      top: -2rem;
+
+      @include respond(tab-port) {
+        top: 0;
+        transform: scale(1.2);
+      }
+
+      @include respond(phone) {
+        top: 0;
+        transform: scale(1);
+      }
+    }
+
+    &--p2 {
+      right: 0;
+      top: 2rem;
+
+      @include respond(tab-port) {
+        top: -1rem;
+        transform: scale(1.3);
+        z-index: 100;
+      }
+
+      @include respond(phone) {
+        top: 0;
+        transform: scale(1);
+      }
+    }
+
+    &--p3 {
+      left: 20%;
+      top: 10rem;
+
+      @include respond(tab-port) {
+        top: 1rem;
+        left: 0;
+        transform: scale(1.1);
+      }
+      @include respond(phone) {
+        top: 0;
+        transform: scale(1);
+      }
+    }
+
+    &:hover {
+      outline: 1.5rem solid $color-primary;
+      transform: scale(1.05) translateY(-0.5rem);
+      box-shadow: 0 2.5rem 4rem rgba(#000, 0.5);
+      z-index: 20;
+    }
+  }
+
+  &:hover &__photo:not(:hover) {
+    transform: scale(0.95);
+  }
+  //composition:hover composition__photo:not(:hover) {
 }
 
 //feature
 .feature-box {
-    background-color: rgba($color-white, .8);
-    font-size: 1.5rem;
-    padding: 2.5rem;
-    text-align: center;
-    border-radius: 3px;
-    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
-    transition: transform .3s;
+  background-color: rgba($color-white, 0.8);
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+  transition: transform 0.3s;
 
-    
+  @include respond(tab-port) {
+    padding: 2rem;
+  }
 
-    &__icon {
-        font-size: 6rem;
-        margin-bottom: .5rem;
-        display: inline-block;
-        background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
-        -webkit-background-clip: text;
-        
+  &__icon {
+    font-size: 6rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    background-image: linear-gradient(
+      to right,
+      $color-primary-light,
+      $color-primary-dark
+    );
+    -webkit-background-clip: text;
 
-        
+    @include respond(tab-port) {
+      margin-bottom: 0;
     }
+  }
 
-    &:hover {
-        transform: translateY(-1.5rem) scale(1.03);
-    }
+  &:hover {
+    transform: translateY(-1.5rem) scale(1.03);
+  }
 }
 
 //price-card
-.price-container{
-    max-width: 120rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(36rem,1fr));
-    row-gap: 9.6rem;
-    column-gap: 4.8rem;
-    margin: 0 auto;
-    padding: 0 1.2rem;
-
-   
+.price-container {
+  max-width: 120rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(36rem, 1fr));
+  row-gap: 9.6rem;
+  column-gap: 4.8rem;
+  margin: 0 auto;
+  padding: 0 1.2rem;
 }
 
-.price{
-    box-shadow: 0 2.4rem 4.8rem rgba(0,0,0,.075);
-    border-radius: 11px;
-    overflow: hidden;
-    transition: all .4s;
-    
+.price {
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  border-radius: 11px;
+  overflow: hidden;
+  transition: all 0.4s;
 
-    &:hover{
-        transform: scale(1.1);
-        box-shadow: 0 3.2rem 6.4rem rgba(0,0,0,.06);
-    }
-    &-img{
-        width: 100%;    
-        filter: opacity(55%);
-    }
-    &-content{
-        padding: 3.2rem;
-    }    
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
+  }
+  &-img {
+    width: 100%;
+    filter: opacity(55%);
+  }
+  &-content {
+    padding: 3.2rem;
+  }
 }
-.best{
-    background-color: rgba($color-primary-light,0.1);
+.best {
+  background-color: rgba($color-primary-light, 0.1);
 }
-.plan-header{
-    text-align: center;
-    margin-bottom: 4.8rem;
+.plan-header {
+  text-align: center;
+  margin-bottom: 4.8rem;
 }
-.plan-name{
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: $color-primary;
-    text-transform: uppercase;
-    margin-bottom:1.2rem;
-    letter-spacing: .75;
-}
-
-.plan-price{
-    font-size: 6.2rem;
-    font-weight: 600;
-    color: #333;
-    
+.plan-name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: $color-primary;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.75;
 }
 
-.plan-price span{
-    font-size:3rem;
-    margin-right: .2rem;
-    font-weight: 500;
+.plan-price {
+  font-size: 6.2rem;
+  font-weight: 600;
+  color: #333;
 }
 
-.plan-text{
-    color: #6f6f6f;
-    font-size: 1.6rem;
-    line-height: 1.6;
-   
+.plan-price span {
+  font-size: 3rem;
+  margin-right: 0.2rem;
+  font-weight: 500;
 }
 
-.plan-sign-up{
-    text-align: center;
-    margin-top: 4.8rem;
+.plan-text {
+  color: #6f6f6f;
+  font-size: 1.6rem;
+  line-height: 1.6;
 }
 
-
-.footer{
-    
+.plan-sign-up {
+  text-align: center;
+  margin-top: 4.8rem;
 }

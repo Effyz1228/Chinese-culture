@@ -1,11 +1,11 @@
 //colors
-$color-primary:#C70039;
-$color-primary-light:#cd1a4d;
-$color-primary-dark:#b30033;
+$color-primary: #c70039;
+$color-primary-light: #cd1a4d;
+$color-primary-dark: #b30033;
 
-$color-secondary:#900C3F;
-$color-tertiary:#FF5733;
-$color-fourth:#511845;
+$color-secondary: #900c3f;
+$color-tertiary: #ff5733;
+$color-fourth: #511845;
 
 $color-grey-light-1: #f7f7f7;
 $color-grey-light-2: #eee;
@@ -17,234 +17,290 @@ $color-grey-dark-3: #333;
 $color-white: #fff;
 $color-black: #000;
 
+//mixins
+/*1em = 16px */
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800
+  }
+}
 
 //Typography
 body {
-    font-family: "Merriweather", sans-serif;
-    font-weight: 400;
-    line-height: 1.7;
-    color: $color-primary-dark;
+  font-family: "Merriweather", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: $color-primary-dark;
 }
 
 .heading-primary {
-    color: #fff;
-    text-transform: uppercase;
+  color: #fff;
+  text-transform: uppercase;
 
-    backface-visibility: hidden;
-    margin-bottom: 6rem;
+  backface-visibility: hidden;
+  margin-bottom: 6rem;
 
-    &--main {
-        display: block;
-        font-size: 5rem;
-        font-weight: 400;
-        letter-spacing: 1.25rem;
-    
-        animation-name: moveInLeft;
-        animation-duration: 1s;
-        animation-timing-function: ease-out;
-       
+  &--main {
+    display: block;
+    font-size: 5rem;
+    font-weight: 400;
+    letter-spacing: 1.25rem;
+
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+
+    @include respond(phone) {
+      letter-spacing: 1rem;
+      font-family: 5rem;
     }
-    
-    &--sub {
-        display: block;
-        font-size: 2rem;
-        font-weight: 700;
-        letter-spacing: 0.25rem;
-        animation: moveInRight 1s ease-out;
+  }
+
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.25rem;
+    animation: moveInRight 1s ease-out;
+
+    @include respond(phone) {
+      letter-spacing: 0.5rem;
     }
+  }
 }
 
 .heading-secondary {
-    font-size: 3.5rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    display: inline-block;
-    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
-    -webkit-background-clip: text;
-    color: transparent;
-    letter-spacing: .2rem;
-    transition: all .2s;
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(
+    to right,
+    $color-primary-light,
+    $color-primary-dark
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 0.2rem;
+  transition: all 0.2s;
 
+  @include respond(tab-port) {
+    font-size: 3rem;
+  }
 
-    &:hover {
-        transform: skewY(2deg) skewX(15deg) scale(1.1);
-        text-shadow: .5rem 1rem 2rem rgba(#000, .2);
-    }
+  @include respond(phone) {
+    font-size: 2.5rem;
+  }
+
+  &:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(#000, 0.2);
+  }
 }
 
 .heading-tertiary {
-    font-size: 1.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .paragraph {
-    font-size: 1.6rem;
+  font-size: 1.6rem;
 
-    &:not(:last-child) {
-        margin-bottom: 3rem;
-    }
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
 }
 
 //buttons
-.btn,.btn-price{
-    &,
-    &:link,
-    &:visited {
-        display: inline-block;
-        text-transform: uppercase;
-        text-decoration: none;
-        padding: 1.5rem 4rem;
-        display: inline-block;
-        border-radius: 10rem;
-        transition: all .2s;
-        position: relative;
-        font-size: 1.6rem;
+.btn,
+.btn-price {
+  &,
+  &:link,
+  &:visited {
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all 0.2s;
+    position: relative;
+    font-size: 1.6rem;
 
-        //Change for the <button> element
-        border: none;
-        cursor: pointer;
-    }
+    //Change for the <button> element
+    border: none;
+    cursor: pointer;
+  }
 
-    
-    
-    &:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 1rem 2rem rgba(#000,.2);
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(#000, 0.2);
 
-        &::after {
-            transform: scaleX(1.4) scaleY(1.6);
-            opacity: 0;
-        }
-    }
-    
-    &:active,
-    &:focus {
-        outline: none;
-        transform: translateY(-1px);
-        box-shadow: 0 .5rem 1rem rgba(#000,.2);
-    }
-    
-    &--white {
-        background-color: #fff;;
-        color: $color-fourth;
-
-        &::after {
-            background-color: #fff;;
-        }
-    }
-
-    &--green {
-        background-color: $color-primary;
-        color: #fff;;
-
-        &::after {
-            background-color: $color-primary;
-        }
-    }
-    
     &::after {
-        content: "";
-        display: inline-block;
-        height: 100%;
-        width: 100%;
-        border-radius: 10rem;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        transition: all .4s;
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
     }
-    
-    &--animated {
-        animation: moveInBottom .5s ease-out .75s;
-        animation-fill-mode: backwards;
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba(#000, 0.2);
+  }
+
+  &--white {
+    background-color: #fff;
+    color: $color-fourth;
+
+    &::after {
+      background-color: #fff;
     }
+  }
+
+  &--green {
+    background-color: $color-primary;
+    color: #fff;
+
+    &::after {
+      background-color: $color-primary;
+    }
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards;
+  }
 }
 
-.btn-price{
-    &,
-&:link,
-&:visited{
+.btn-price {
+  &,
+  &:link,
+  &:visited {
     background-color: $color-primary-light;
     color: #fff;
     font-family: "Merriweather", sans-serif;
-}
+  }
 }
 
 .btn-text {
-    &:link,
-    &:visited {
-        font-size: 1.6rem;
-        color: $color-primary;
-        display: inline-block;
-        text-decoration: none;
-        border-bottom: 1px solid $color-primary;
-        padding: 3px;
-        transition: all .2s;
-    }
+  &:link,
+  &:visited {
+    font-size: 1.6rem;
+    color: $color-primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary;
+    padding: 3px;
+    transition: all 0.2s;
+  }
 
-    &:hover {
-        background-color: $color-primary;
-        color: #fff;
-        box-shadow: 0 1rem 2rem rgba(#000, .15);
-        transform: translateY(-2px);
-    }
+  &:hover {
+    background-color: $color-primary;
+    color: #fff;
+    box-shadow: 0 1rem 2rem rgba(#000, 0.15);
+    transform: translateY(-2px);
+  }
 
-    &:active {
-        box-shadow: 0 .5rem 1rem rgba(#000, .15);
-        transform: translateY(0);
-    }
+  &:active {
+    box-shadow: 0 0.5rem 1rem rgba(#000, 0.15);
+    transform: translateY(0);
+  }
 }
 
 //list
-.list{
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    font-family: "Merriweather", sans-serif;
- 
- }
- .list-item{
-    font-family: "Merriweather", sans-serif;
-    font-size: 1.8rem;
-    display: flex;
-    gap: 1.2rem;
-    align-items: center;
-    line-height: 1.2;
- }
- 
- .list-icon{
-    height: 3rem;
-    width: 3rem;
-    color: $color-primary-light;
- }
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: "Merriweather", sans-serif;
+}
+.list-item {
+  font-family: "Merriweather", sans-serif;
+  font-size: 1.8rem;
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.list-icon {
+  height: 3rem;
+  width: 3rem;
+  color: $color-primary-light;
+}
 
 //utilities:
-.u-center-text { text-align: center !important; }
+.u-center-text {
+  text-align: center !important;
+}
 
-.u-margin-bottom-tiny{margin-bottom: 1rem !important;}
-.u-margin-bottom-small { margin-bottom: 1.5rem !important; }
+.u-margin-bottom-tiny {
+  margin-bottom: 1rem !important;
+}
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem !important;
+}
 .u-margin-bottom-medium {
-    margin-bottom: 4rem !important;
+  margin-bottom: 4rem !important;
 
-   
+  @include respond(tab-port) {
+    margin-bottom: 3rem !important;
+  }
 }
 
-.u-margin-bottom-big { 
-    margin-bottom: 8rem !important;
+.u-margin-bottom-big {
+  margin-bottom: 8rem !important;
 
-    
+  @include respond(tab-port) {
+    margin-bottom: 5rem !important;
+  }
 }
 
-.u-margin-top-big { margin-top: 8rem !important; }
-.u-margin-top-huge { margin-top: 10rem !important; }
-
-.content-width{
-    width: 80%;
+.u-margin-top-big {
+  margin-top: 8rem !important;
 }
-.section-layout{
-    max-width: 114rem;
-    margin: 0 auto;
+.u-margin-top-huge {
+  margin-top: 10rem !important;
+}
+
+.content-width {
+  width: 80%;
+}
+.section-layout {
+  max-width: 114rem;
+  margin: 0 auto;
 }
